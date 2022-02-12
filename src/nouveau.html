@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Carte Leaflet intéractive</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="./assets/css/styles.css">
+
+        <!-- Load Leaflet from CDN -->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+        <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+        <!-- Esri Leaflet and Esri Leaflet Vector -->
+        <script src="https://unpkg.com/esri-leaflet/dist/esri-leaflet.js"></script>
+        <script src="https://unpkg.com/esri-leaflet-vector@3.1.1/dist/esri-leaflet-vector.js" integrity="sha512-7rLAors9em7cR3/583gZSvu1mxwPBUjWjdFJ000pc4Wpu+fq84lXF1l4dbG4ShiPQ4pSBUTb4e9xaO6xtMZIlA==" crossorigin=""></script>
+
+        <!-- Liens CDN Awesome-leaflet -->
+        <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" rel="stylesheet"/>
+
+        <!-- Liens CDN Awesome-marker-leaflet -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css" integrity="sha512-cUoWMYmv4H9TGP4hbm1mIjYo90WzIQFo/5jj+P5tQcDTf+iVR59RyIj/a9fRsBxzxt5Dnv/Ex7MzRIxcDwaOLw==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js" integrity="sha512-Oj9plGLST4IMXFXDfqMdTP+gSInbodkyno117PSjo5R08eu6TdzY9WPnnwQZGx2O2lG/kN0MzQk95ulWsRFuLA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+        <!-- Esri Leaflet Geocoder -->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css"/>
+        <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+    
+    </head>
+
+    <body>
+        <div class="container">
+            <header>
+                <h1>La côte-nord</h1>
+                <p class="txt-right">
+                    <button class="btn" id="localisation">Me trouver</button>
+                </p>
+            </header>
+            <main>
+                <div id="legend">
+                    <img src="./assets/images/legende.jpg" alt="Legende de la carte" />
+                </div>
+
+                <div id="map"></div>
+            </main>
+            <footer>Monica Gilbert</footer>
+        </div>
+
+       <script src="./assets/scripts/main.js"></script>
+    </body>
+</html>
