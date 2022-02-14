@@ -225,3 +225,97 @@ let geocoder = L.Control.geocoder({
     poly.openPopup();
 })
 .addTo(map);
+
+// Ajout d'une couche GéoJSON 
+
+
+let coucheGeoJSON = L.geoJson(cotenord, {
+    style: style,
+    onEachFeature: onEachFeature,
+}).addTo(map);
+
+function style(feature) {
+    return {
+        fillColor: getColor(feature.properties.population),
+        weight: 2,
+        opacity: 1,
+        color: "white",
+        dashArray: "3",
+        fillOpacity: 0.7,
+    };
+}
+
+function getColor(d) {
+    return d > 1500
+        ? "#ccebc5"
+        : d > 1000
+        ? "#a8ddb5"
+        : d > 800
+        ? "#a8ddb5"
+        : d > 600
+        ? "#7bccc4"
+        : d > 400
+        ? "#4eb3d3"
+        : d > 200
+        ? "#2b8cbe"
+        : d > 100
+        ? "#08589e"
+        : "#08589e";
+}
+
+function resetHighlight(e) {
+    coucheGeoJSON.resetStyle(e.target);
+    info.update();
+}
+
+function onEachFeature(feature, layer) {
+    layer.on({
+        mouseover: highlightFeature,
+        mouseout: resetHighlight,
+    });
+}
+
+let info = L.control();
+
+info.onAdd = function (map) {
+    this._div = L.DomUtil.create("div", "info");
+    this.update();
+    return this._div;
+};
+
+info.update = function (props) {
+    this._div.innerHTML =
+        "<h3>Population des villages de la côte-nord</h3>" +
+        (props
+            ? "<h4>" +
+              props.ville +
+              "</h4><br /><h5>" +
+              props.population.toLocaleString() +
+              "habitants </h5>"
+            : "<h5>Passer la souris sur un village</h5>");
+};
+
+info.addTo(map);
+
+function highlightFeature(e) {
+    var layer = e.target;
+
+    layer.setStyle({
+        weight: 3,
+        color: "darkturquoise",
+        dashArray: "",
+        fillOpacity: 0.4,
+    });
+
+    if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+        layer.bringToFront();
+    }
+
+    info.update(layer.feature.properties);
+}
+
+function resetHighlight(e) {
+    coucheGeoJSON.resetStyle(e.target);
+    info.update();
+}
+

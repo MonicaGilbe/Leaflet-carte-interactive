@@ -3,9 +3,27 @@ body {
     padding: 0;
     height: 100vh;
 }
+
 h3 {
-    color: palevioletred;
+    color: rgb(13, 123, 138);
 }
+h4 {
+    color: rgb(7, 52, 94);
+}
+h5 {
+    color: rgb(56, 56, 63);
+    font-size: 0.8rem;
+}
+
+.info {
+    padding: 6px 8px;
+    font: 14px/16px Arial, Helvetica, sans-serif;
+    background: white;
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+}
+
 .container {
     display: grid;
     grid-template-columns: 1fr;
