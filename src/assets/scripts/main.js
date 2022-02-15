@@ -19,17 +19,20 @@ let coucheDeBase = L.tileLayer(
         maxZoom: 16,
         ext: "jpg",
     }
-    ).addTo(map);
+    );
 
 // Déclarations de variables
 
 let villesLabel = L.esri.basemapLayer("TerrainLabels");
+let greyLayer =   L.esri.basemapLayer("Gray").addTo(map);;
 
 let centreEscoumins = [48.34866474740287, -69.40350096073513];
 let centreBergeronnes = [48.244821464328574, -69.54854666282955];
 let centreForestville = [48.738908756945705, -69.09546363786525];
 let centrePortneuf = [48.616762982396324, -69.1012900179826];
 let centreLongueRive = [48.54922000700041, -69.24988482716074];
+let centreTadoussac = [48.16516707746481, -69.7127144893476];
+let centreSacreCoeur = [48.17597025187813, -69.7890705631829];
 
 // Création d'icones
 
@@ -61,6 +64,17 @@ let iconLongueRive = L.icon({
 
 iconUrl: "/src/assets/images/moose.png",
 iconSize: [40, 40],
+});
+
+let iconTadoussac = L.icon({
+
+    iconUrl: "/src/assets/images/beluga.png",
+    iconSize: [40, 40],
+});
+let iconSacreCoeur = L.icon({
+
+    iconUrl: "/src/assets/images/erable.png",
+    iconSize: [40, 40],
 });
 
 // Création de marqueurs avec popup qui indique la ville et le logo de la ville
@@ -111,6 +125,24 @@ let marqueurLongueRive = L.marker(centreLongueRive, {
 )
 .addTo(map);
 
+let marqueurTadoussac = L.marker(centreTadoussac, {
+
+    icon: iconTadoussac,
+})
+.bindPopup(
+    '<div class="popup"><h1>Tadoussac</h1><img src="https://cdn.freebiesupply.com/logos/large/2x/tadoussac-quebec-logo-png-transparent.png" alt="Logo Escoumins"></div>'
+)
+.addTo(map);
+
+let marqueursacrecoeur = L.marker(centreSacreCoeur, {
+
+    icon: iconSacreCoeur,
+})
+.bindPopup(
+    '<div class="popup"><h1>Sacré-Coeur</h1><img src="https://sacre-coeur.ca/wp-content/uploads/2018/07/Logo_cote.jpg" alt="Logo Escoumins"></div>'
+)
+.addTo(map);
+
 // Création de control de couches
 let villes = {
 
@@ -119,6 +151,7 @@ let villes = {
     "Forestville": marqueurForestville,
     "Portneuf-sur-mer": marqueurPortneuf,
     "Longue-rive": marqueurLongueRive,
+    "Tadoussac":marqueurTadoussac,
 
 };
 
@@ -142,14 +175,12 @@ let rorqualBosse = L.esri
 .dynamicMapLayer({
     url: "https://gisp.dfo-mpo.gc.ca/arcgis/rest/services/FGP/HumpbackWhales_RorqualBosse_Observation/MapServer",
     opacity: 0.7,
-})
-.addTo(map);
+});
 
 L.esri
 .dynamicMapLayer({
-    url: "https://gisp.dfo-mpo.gc.ca/arcgis/rest/services/FGP/ParticulateMatter_MatiereParticulaire_StLaurent/MapServer/0",
-})
-.addTo(map);
+    url: "https://gisp.dfo-mpo.gc.ca/arcgis/rest/services/FGP/ParticulateMatter_MatiereParticulaire_StLaurent/MapServer",
+});
 
 let baleine = {
 
@@ -193,7 +224,7 @@ map.locate({ setView: true, maxZoom: 16 });
 
 function onLocationFound(e) {
     console.log(e.latlng);
-    let marqueur = L.marker(e.latlng, { icon: home })
+        L.marker(e.latlng, { icon: home })
     .addTo(map)
     .bindPopup("<h3>Vous êtes ici</h3>")
     .openPopup();
@@ -321,39 +352,35 @@ function resetHighlight(e) {
 
 // MÉTÉO
 
-const urlMeteo = "http://api.openweathermap.org/data/2.5/weather?lat=48&lon=-69&units=metric&lang=fr&appid=2df42a32876c420b2a5ac5c4b2882be5";
+const urlMeteo = "https://api.openweathermap.org/data/2.5/weather?lat=48.61&lon=-69.38&units=metric&lang=fr&appid=2df42a32876c420b2a5ac5c4b2882be5";
 
 const groupe = L.layerGroup();
 groupe.addTo(map);
 
-
 let xhttp = new XMLHttpRequest();
-
-xhttp.onreadysyatechange = function() {
-
-    if (hxttp.readyState == 4 && this.status == 200) {
-
+//Callback au changement d'état
+xhttp.onreadystatechange = function () {
+    if (xhttp.readyState == 4 && this.status == 200) {
         let fichierJSON = JSON.parse(xhttp.responseText);
         afficheMeteo({
             temperature: fichierJSON.main.temp,
             description: fichierJSON.weather[0].description,
-            urlIcon: `http://openweathermap.org/img/w/${fichierJSON.waether[0].icon}.png`,
+            urlIcon: `http://openweathermap.org/img/w/${fichierJSON.weather[0].icon}.png`, 
             coords:fichierJSON.coord
         })
     };
+}
+xhttp.open("GET", urlMeteo);
+xhttp.send();
 
-   xhttp.open("GET", urlMeteo);
-   xhttp.send();
+function afficheMeteo(objMeteo){
+    let coordonnes = L.latLng(objMeteo.coords.lat, objMeteo.coords.lon);
+     label = L.marker(coordonnes,{
+        icon: L.divIcon({
+            className: 'label',
+            html: '<div><img src="' + objMeteo.urlIcon + '" title="' + objMeteo.description + '"><p>' + objMeteo.temperature + ' C&deg;</p></div>'})
+    }).addTo(groupe);
 
-   function afficheMeteo(objMeteo) {
-       let centre = L.latlng(objMeteo.coords.lat, objMeteo.lon);
-        label = L.marker(centre, {
-           icon: L.divIcon({
-               className: 'label',
-               html: '<div><img src="' + objMeteo.urlIcon + '" title="' + objMeteo.description + '"><p>' + objMeteo.temperature + ' C&deg;</p></div>'
-           })
-       }).addTo(groupe);
-       console.log(centre);
-
-   }
+    console.log(urlMeteo);
+  
 }
