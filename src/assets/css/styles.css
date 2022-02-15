@@ -15,6 +15,19 @@ h5 {
     font-size: 0.8rem;
 }
 
+#localisation {
+    position: absolute;
+    top:50px;
+    left:300px;
+    background-color: rgb(23, 162, 204);
+    color:white;
+    padding:10px;
+    border-radius:10px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    font-family: serif;
+}
+
 .info {
     padding: 6px 8px;
     font: 14px/16px Arial, Helvetica, sans-serif;
@@ -50,7 +63,7 @@ header {
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
-    max-height: 25vh;
+    max-height: 15vh;
 }
 
 main {
@@ -93,3 +106,15 @@ img {
 #legend img {
     max-width: 60%;
 }
+
+/* .label div {
+    text-align: center;
+    width: 100px;
+    position: relative;
+    left: -50px;
+    top:-50px;
+    text-shadow: 0px 2px 1px rgba(255, 255, 255,  0.85);
+    font-size: 16px;
+    font-weight: bold;
+
+} */

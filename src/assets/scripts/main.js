@@ -319,3 +319,41 @@ function resetHighlight(e) {
     info.update();
 }
 
+// MÉTÉO
+
+const urlMeteo = "http://api.openweathermap.org/data/2.5/weather?lat=48&lon=-69&units=metric&lang=fr&appid=2df42a32876c420b2a5ac5c4b2882be5";
+
+const groupe = L.layerGroup();
+groupe.addTo(map);
+
+
+let xhttp = new XMLHttpRequest();
+
+xhttp.onreadysyatechange = function() {
+
+    if (hxttp.readyState == 4 && this.status == 200) {
+
+        let fichierJSON = JSON.parse(xhttp.responseText);
+        afficheMeteo({
+            temperature: fichierJSON.main.temp,
+            description: fichierJSON.weather[0].description,
+            urlIcon: `http://openweathermap.org/img/w/${fichierJSON.waether[0].icon}.png`,
+            coords:fichierJSON.coord
+        })
+    };
+
+   xhttp.open("GET", urlMeteo);
+   xhttp.send();
+
+   function afficheMeteo(objMeteo) {
+       let centre = L.latlng(objMeteo.coords.lat, objMeteo.lon);
+        label = L.marker(centre, {
+           icon: L.divIcon({
+               className: 'label',
+               html: '<div><img src="' + objMeteo.urlIcon + '" title="' + objMeteo.description + '"><p>' + objMeteo.temperature + ' C&deg;</p></div>'
+           })
+       }).addTo(groupe);
+       console.log(centre);
+
+   }
+}
