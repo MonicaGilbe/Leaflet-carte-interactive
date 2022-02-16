@@ -8,7 +8,7 @@ let centre = [48.543080950483116, -69.20983362777652];
 let map = L.map("map").setView(centre, 10);
 
 //Fond de carte
-let coucheDeBase = L.tileLayer(
+let coucheStamenWatercolor = L.tileLayer(
 
     "https://stamen-tiles-{s}.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.{ext}",
     {
@@ -71,11 +71,13 @@ let iconTadoussac = L.icon({
     iconUrl: "/src/assets/images/beluga.png",
     iconSize: [40, 40],
 });
+
 let iconSacreCoeur = L.icon({
 
     iconUrl: "/src/assets/images/erable.png",
     iconSize: [40, 40],
 });
+
 
 // Création de marqueurs avec popup qui indique la ville et le logo de la ville
 
@@ -143,8 +145,9 @@ let marqueursacrecoeur = L.marker(centreSacreCoeur, {
 )
 .addTo(map);
 
+
 // Création de control de couches
-let villes = {
+let villages = {
 
     "Escoumins": marqueurEscoumins,
     "Bergeronnes": marqueurBergeronne,
@@ -157,37 +160,67 @@ let villes = {
 
 let baseLayers = {
 
-"Couche de Base": coucheDeBase,
-villes: villesLabel,
+"Stamen Watercolor": coucheStamenWatercolor,
+Villages: villesLabel,
 
 };
 
 let aireAlimentation = L.esri.dynamicMapLayer({
-url: "https://gisp.dfo-mpo.gc.ca/arcgis/rest/services/FGP/BlueWhaleHabitat_HabitatBaleineBleue/MapServer/",
-});
+                        url: "https://gisp.dfo-mpo.gc.ca/arcgis/rest/services/FGP/BlueWhaleHabitat_HabitatBaleineBleue/MapServer/",
+                        });
 
 let phoques = L.esri.dynamicMapLayer({
-url: "https://gisp.dfo-mpo.gc.ca/arcgis/rest/services/FGP/Seal_Phoque_Haulout/MapServer",
-opacity: 0.9,
-});
+            url: "https://gisp.dfo-mpo.gc.ca/arcgis/rest/services/FGP/Seal_Phoque_Haulout/MapServer",
+            opacity: 0.9,
+            });
 
-let rorqualBosse = L.esri
-.dynamicMapLayer({
-    url: "https://gisp.dfo-mpo.gc.ca/arcgis/rest/services/FGP/HumpbackWhales_RorqualBosse_Observation/MapServer",
-    opacity: 0.7,
-});
+let rorqualBosse = L.esri.dynamicMapLayer({
+                        url: "https://gisp.dfo-mpo.gc.ca/arcgis/rest/services/FGP/HumpbackWhales_RorqualBosse_Observation/MapServer",
+                        opacity: 0.7,
+                    });
 
-L.esri
-.dynamicMapLayer({
-    url: "https://gisp.dfo-mpo.gc.ca/arcgis/rest/services/FGP/ParticulateMatter_MatiereParticulaire_StLaurent/MapServer",
-});
+L.esri.dynamicMapLayer({
+            url: "https://gisp.dfo-mpo.gc.ca/arcgis/rest/services/FGP/ParticulateMatter_MatiereParticulaire_StLaurent/MapServer",
+        });
 
-let baleine = {
+// Déclaration des groupes de calques
+
+// let campings = L.featureGroup(null, {icon:iconCamping});
+
+let  campingBaieVerte = L.marker([48.74166294397123, -69.05483023391093]);
+let  campingPortneufSurMer = L.marker([48.646329315529435, -69.0932702926452]);
+let  campingParadisMarin = L.marker([48.28430400110731, -69.46334898104324]);
+let  campingLeTipi = L.marker([48.347521316650415, -69.39834479456435]);
+
+
+let plages = L.layerGroup();
+
+let plageBaieVerte = L.marker([48.740556632273844, -69.05760545702775]).addTo(plages);
+let plageEssipit = L.marker([48.93947818036687, -68.63595568077419]).addTo(plages);
+let plagePointeFortin = L.marker([48.641159694894206, -69.08627116504347]).addTo(plages);
+let plageLonguerive = L.marker([48.54199082543449, -69.24985202978472]).addTo(plages);
+let plagePointeBoisvert = L.marker([48.572409544933656, -69.19270703293581]).addTo(plages);
+let plageBergeronnes = L.marker([48.23115862563465, -69.54126601859635]).addTo(plages);
+let plageTadoussac = L.marker([48.159482806917, -69.72629549963156]).addTo(plages);
+
+// Indormations disponibles dans le filtre de couches
+
+let informations = {
 
 "Habitat de la baleine bleu": aireAlimentation,
 "Présence de phoques": phoques,
 "Présence de Rorquals à bosse": rorqualBosse,
-
+"Camping la Baie-Verte": L.marker([48.74166294397123, -69.05483023391093]),
+"Camping Portneuf-Sur-Mer": L.marker([48.646329315529435, -69.0932702926452]),
+"Camping Paradis Marin": L.marker([48.28430400110731, -69.46334898104324]),
+"Camping le Tipi": L.marker([48.347521316650415, -69.39834479456435]),
+"Plage Baie-Verte": L.marker([48.740556632273844, -69.05760545702775]),
+"Plage Essipit": L.marker([448.93947818036687, -68.63595568077419]),
+"Plage Pointe-Fortin": L.marker([48.641159694894206, -69.08627116504347]),
+"Plage Longue-rive": L.marker([48.54199082543449, -69.24985202978472]),
+"Plage Point-à-boisvert": L.marker([48.572409544933656, -69.19270703293581]),
+"Plage Bergeronnes": L.marker([48.23115862563465, -69.54126601859635]),
+"Plage Tadoussac": L.marker([48.159482806917, -69.72629549963156]),
 };
 
 // ECHELLE
@@ -201,7 +234,9 @@ let echelle = L.control
 
 // Control
 
-let layerControl = L.control.layers(baseLayers, baleine).addTo(map);
+let layerControl = L.control.layers(baseLayers, informations).addTo(map);
+
+
 
 //Localisation de l'utilisateur
 let home = L.AwesomeMarkers.icon({
@@ -264,6 +299,7 @@ let coucheGeoJSON = L.geoJson(cotenord, {
     style: style,
     onEachFeature: onEachFeature,
 }).addTo(map);
+
 
 function style(feature) {
     return {

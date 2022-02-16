@@ -2,6 +2,11 @@ body {
     margin: 0;
     padding: 0;
     height: 100vh;
+    width: 100vw;
+   
+}
+h1 {
+    font-size: 1.8rem;
 }
 
 h3 {
@@ -17,15 +22,17 @@ h5 {
 
 #localisation {
     position: absolute;
-    top:50px;
-    left:300px;
+    top:10px;
+    left:20px;
+    margin-right:20px;
     background-color: rgb(23, 162, 204);
     color:white;
     padding:10px;
     border-radius:10px;
-    font-size: 1.2rem;
+    font-size: 0.8rem;
     font-weight: bold;
     font-family: serif;
+    max-width: 100px;
 }
 
 .info {
@@ -44,8 +51,9 @@ h5 {
         "header"
         "main"
         "footer";
-    grid-template-rows: 1fr 10fr 1fr;
+    grid-template-rows: auto;
     height: 100vh;
+    width: 100vw;
 }
 
 #map {
@@ -68,7 +76,8 @@ header {
 
 main {
     grid-area: main;
-    height: 100%;
+    height: 100vh;
+    width: 100vw;
 }
 
 footer {
@@ -95,16 +104,24 @@ img {
     align-items: center;
 }
 
-#legend {
+/* #legend {
     position: absolute;
     bottom: 80px;
     right: -190px;
     z-index: 401;
     max-width: 100%;
+} */
+
+#legend {
+    position: absolute;
+    bottom: 0;
+    right: -205px;
+    z-index: 401;
+    max-width: 100%;
 }
 
 #legend img {
-    max-width: 60%;
+    max-width: 40%;
 }
 
 .label div {
@@ -120,4 +137,18 @@ img {
 
 div p {
     margin: -10px;
+}
+
+@media screen and (min-width:600px) {
+     #legend {
+    position: absolute;
+    bottom: 80px;
+    right: -190px;
+    z-index: 401;
+    max-width: 100%;
+} 
+
+#legend img {
+    max-width: 55%;
+}
 }
