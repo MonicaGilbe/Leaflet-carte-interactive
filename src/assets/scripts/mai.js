@@ -1,4 +1,4 @@
-// Clé pour API 
+
 const apiKey = "AAPK7093c98f9dce403db6986478aa0290e0DN9UUhk_ldJgXa7ogBD48SHn_TAJ_znJ8_9mBuykB_dPKpHsabhPmY94l_rNuxWvS";
 
 // Coordonées
@@ -25,8 +25,7 @@ let coucheStamenWatercolor = L.tileLayer(
 // Déclarations de variables
 
 let villesLabel = L.esri.basemapLayer("TerrainLabels");
-let gray = L.esri.basemapLayer("Gray");
-let greyLayer =   L.esri.basemapLayer("Oceans").addTo(map);;
+let greyLayer =   L.esri.basemapLayer("Gray").addTo(map);;
 
 let centreEscoumins = [48.34866474740287, -69.40350096073513];
 let centreBergeronnes = [48.244821464328574, -69.54854666282955];
@@ -175,7 +174,6 @@ let baseLayers = {
 
 "Stamen Watercolor": coucheStamenWatercolor,
 Villages: villesLabel,
-Gray:gray,
 
 };
 
@@ -267,7 +265,7 @@ localisation.disabled = true; // on désactive le bouton pour evter le spam, la 
 map.on("locationfound", onLocationFound); // s'il vous trouve il lance cette fonction
 map.on("locationerror", onLocationError); // s'il vous trouve pas, il lance cette fonction
 
-map.locate({ setView: true, maxZoom: 10 });
+map.locate({ setView: true, maxZoom: 16 });
 });
 
 function onLocationFound(e) {
@@ -371,7 +369,7 @@ info.update = function (props) {
               props.ville +
               "</h4><br /><h5>" +
               props.population.toLocaleString() +
-              " habitants </h5>"
+              "habitants </h5>"
             : "<h5>Passer la souris sur un village</h5>");
 };
 

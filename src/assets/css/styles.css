@@ -1,39 +1,115 @@
 body {
-    margin: 0;
-    padding: 0;
-    height: 100vh;
-    width: 100vw;
-   
+    font: 20px Montserrat, sans-serif;
+    line-height: 1.8;
+    color: #f5f6f7;
 }
+
+/* Style pour les titres  */
+
 h1 {
     font-size: 1.8rem;
 }
 
+
 h3 {
     color: rgb(13, 123, 138);
+    font-size: 1.6rem; 
 }
+
 h4 {
     color: rgb(7, 52, 94);
 }
+
 h5 {
     color: rgb(56, 56, 63);
-    font-size: 0.8rem;
+    font-size: 1.3rem;
+    padding: 0;
+    margin: 0;
 }
+
+
+/* Style pour le header */
+
+.navbar {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border: 0;
+    border-radius: 0;
+    margin-bottom: 0;
+    font-size: 12px;
+    letter-spacing: 5px;
+    background-color: black;
+    color:#f5f6f7;
+    font-weight: bold;
+}
+
+.navbar-nav li a:hover {
+    font-weight: bold;
+    color: rgb(58, 146, 62) !important;
+}
+
+/* Style pour la banière sous la navigation */
+
+.banner {
+  
+    background-color: rgba(104, 121, 177, 0.466);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    background-image: url(https://images.pexels.com/photos/1661375/pexels-photo-1661375.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    height: 6vh;
+  
+}
+
+.titre-secondaire {
+    margin: 30px 0;
+    font-size: 1.4rem;
+    font-weight: bold;
+    text-shadow: 1px 1px grey;
+}
+
+/* Bouton de localisation */
 
 #localisation {
     position: absolute;
-    top:10px;
-    left:20px;
+    top:315px;
+    left:16px;
+    z-index: 1000;
     margin-right:20px;
     background-color: rgb(23, 162, 204);
     color:white;
     padding:10px;
     border-radius:10px;
-    font-size: 0.8rem;
+    font-size: 1.5rem;
     font-weight: bold;
     font-family: serif;
     max-width: 100px;
 }
+
+/* Styles de la légende dynamique, carte coroplèthe */
+
+.label div {
+    text-align: center;
+    width: 100px;
+    position: relative;
+    left: -50px;
+    top: -50px;
+    text-shadow: 0px 2px 1px rgba(255, 255, 255, 0.85);
+    font-size: 16px;
+    font-weight: bold;
+}
+
+div p {
+    margin: -10px;
+    color:black;
+}
+
+/* Style pour la div qui indique la population des villages au survol de la souris */
 
 .info {
     padding: 6px 8px;
@@ -42,87 +118,74 @@ h5 {
     background: rgba(255, 255, 255, 0.8);
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
     border-radius: 5px;
+    max-width: 223px;
 }
 
-.container {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-areas:
-        "header"
-        "main"
-        "footer";
-    grid-template-rows: auto;
-    height: 100vh;
-    width: 100vw;
+p {
+    font-size:2rem;
 }
+
+/* Style pour le contenu */
+
+.container-fluid {
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+.leaflet-container {
+    max-height: 80vh;
+}
+
+.leaflet-control-layers-list {
+    background-color: rgb(188, 242, 255);
+    text-align: justify;
+    color: rgb(19, 19, 19);
+    border-radius: 10px;
+    padding: 10px;
+    font-weight: 300;
+}
+
+/* Style pour la section Légende */
+
+#info {
+    background-color: rgba(101, 149, 194, 0.411);
+}
+.icones {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin:1px 20px 30px 10px;
+}
+
+.icone {
+    width: 10%;
+    margin: 10px;
+}
+
+.icone img {
+    max-width:50%;
+}
+
+.icones p {
+    font-size: 1.1rem;
+    margin: 2%; 
+}
+
+/* Style pour le conteneur de la map */
 
 #map {
-    width: 100%;
-    height: 100%;
+    height: 600px;
 }
 
-header {
-    grid-area: header;
-    background-color: rgba(104, 121, 177, 0.466);
-    color: white;
-    text-align: center;
-    font-size: 2rem;
-    background-image: url(https://images.pexels.com/photos/1661375/pexels-photo-1661375.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
-    max-height: 15vh;
-}
 
-main {
-    grid-area: main;
-    height: 100vh;
-    width: 100vw;
-}
-
-footer {
-    grid-area: footer;
-    background-image: url(https://images.pexels.com/photos/1661375/pexels-photo-1661375.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
-    padding: 20px;
-    text-align: center;
-    color: rgb(236, 127, 55);
-    font-size: 2rem;
-    max-height: 5vh;
-}
-img {
-    max-width: 40%;
-}
-
-.leaflet-popup-content,
-.popup {
-    display: flex !important;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-/* #legend {
-    position: absolute;
-    bottom: 80px;
-    right: -190px;
-    z-index: 401;
-    max-width: 100%;
-} */
-
-#legend {
-    position: absolute;
-    bottom: 0;
-    right: -205px;
-    z-index: 401;
-    max-width: 100%;
-}
+/* Style pour la légende en image  */
 
 #legend img {
     max-width: 40%;
 }
+
+/* Style pour les légendes */
 
 .label div {
     text-align: center;
@@ -139,16 +202,50 @@ div p {
     margin: -10px;
 }
 
-@media screen and (min-width:600px) {
-     #legend {
-    position: absolute;
-    bottom: 80px;
-    right: -190px;
-    z-index: 401;
-    max-width: 100%;
-} 
+.legend {
+    line-height: 18px;
+    color: #555;
+    margin-left:10px;
+  
+}
 
-#legend img {
-    max-width: 55%;
+.legend i {
+    width: 18px;
+    height: 18px;
+    float: left;
+    margin-right: 8px;
+    opacity: 0.7;
 }
+
+
+/* Style pour les images */
+
+img {
+    max-width: 40%;
 }
+
+/* Style pour les popup dans la carte  */
+
+.leaflet-popup-content,
+.popup {
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Style pour le pied de page */
+
+footer {
+  
+    background-image: url(https://images.pexels.com/photos/1661375/pexels-photo-1661375.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    padding: 20px;
+    text-align: center;
+    color: rgb(236, 127, 55);
+    font-size: 2rem;
+    height: 10vh;
+}
+
