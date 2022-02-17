@@ -1,170 +1,133 @@
 <!DOCTYPE html>
 <html lang="fr-CA">
+    <head>
+        <!-- Theme Made By www.w3schools.com - No Copyright -->
+        <title>Carte de la côte-nord - Leaflet</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="" />
 
-<head>
-    <!-- Theme Made By www.w3schools.com - No Copyright -->
-    <title>Carte de la côte-nord - Leaflet</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
-        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
-        crossorigin="" />
-
-    <!-- Make sure you put this AFTER Leaflet's CSS -->
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
-        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
-        crossorigin=""></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-    <link rel="stylesheet" href="./assets/css/styles.css">
-            <!-- Load Leaflet from CDN -->
-            <link
-            rel="stylesheet"
-            href="https://unpkg.com/leaflet/dist/leaflet.css"
-        />
+        <!-- Make sure you put this AFTER Leaflet's CSS -->
+        <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+        <link rel="stylesheet" href="./assets/css/styles.css">
+        <!-- Load Leaflet from CDN -->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
         <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
         <!-- Esri Leaflet and Esri Leaflet Vector -->
         <script src="https://unpkg.com/esri-leaflet/dist/esri-leaflet.js"></script>
-        <script
-            src="https://unpkg.com/esri-leaflet-vector@3.1.1/dist/esri-leaflet-vector.js"
-            integrity="sha512-7rLAors9em7cR3/583gZSvu1mxwPBUjWjdFJ000pc4Wpu+fq84lXF1l4dbG4ShiPQ4pSBUTb4e9xaO6xtMZIlA=="
-            crossorigin=""
-        ></script>
+        <script src="https://unpkg.com/esri-leaflet-vector@3.1.1/dist/esri-leaflet-vector.js" integrity="sha512-7rLAors9em7cR3/583gZSvu1mxwPBUjWjdFJ000pc4Wpu+fq84lXF1l4dbG4ShiPQ4pSBUTb4e9xaO6xtMZIlA==" crossorigin=""></script>
 
         <!-- Liens CDN Awesome-leaflet -->
-        <link
-            href="http://netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css"
-            rel="stylesheet"
-        />
+        <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" rel="stylesheet"/>
 
         <!-- Liens CDN Awesome-marker-leaflet -->
-        <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"
-            integrity="sha512-cUoWMYmv4H9TGP4hbm1mIjYo90WzIQFo/5jj+P5tQcDTf+iVR59RyIj/a9fRsBxzxt5Dnv/Ex7MzRIxcDwaOLw=="
-            crossorigin="anonymous"
-            referrerpolicy="no-referrer"
-        />
-        <script
-            src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"
-            integrity="sha512-Oj9plGLST4IMXFXDfqMdTP+gSInbodkyno117PSjo5R08eu6TdzY9WPnnwQZGx2O2lG/kN0MzQk95ulWsRFuLA=="
-            crossorigin="anonymous"
-            referrerpolicy="no-referrer"
-        ></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css" integrity="sha512-cUoWMYmv4H9TGP4hbm1mIjYo90WzIQFo/5jj+P5tQcDTf+iVR59RyIj/a9fRsBxzxt5Dnv/Ex7MzRIxcDwaOLw==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js" integrity="sha512-Oj9plGLST4IMXFXDfqMdTP+gSInbodkyno117PSjo5R08eu6TdzY9WPnnwQZGx2O2lG/kN0MzQk95ulWsRFuLA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js" integrity="sha512-yFjZbTYRCJodnuyGlsKamNE/LlEaEAxSUDe5+u61mV8zzqJVFOH7TnULE2/PP/l5vKWpUNnF4VGVkXh3MjgLsg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <!-- Esri Leaflet Geocoder -->
-        <link
-            rel="stylesheet"
-            href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css"
-        />
-<link rel="stylesheet" href="./assets/css/leaflet-control-layer.css">
+        <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css"/>
+        <link rel="stylesheet" href="./assets/css/leaflet-control-layer.css">
 
-</head>
-
-<body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-default">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="./index.html"> La Côte-Nord</a>
+    </head>
+    <body>
+        <!-- Navbar -->
+        <nav class="navbar navbar-default">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="./index.html"> La Côte-Nord</a>
+                </div>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#info">LÉGENDE</a></li>
+                        <li><a href="#map">CARTE</a></li>
+                    </ul>
+                </div>
             </div>
-            <div class="collapse navbar-collapse" id="myNavbar">
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#info">LÉGENDE</a></li>
-                    <li><a href="#map">CARTE</a></li>
-                </ul>
+        </nav>
+        <!-- First Container -->
+        <div class="container-fluid text-center banner">
+            <h2 class="titre-secondaire"> Voici quelques informations sur la Côte-Nord, ma belle region!</h2>
+                    <p class="txt-right">
+                        <button class="btn" id="localisation"><i class="fa-solid fa-location-arrow"></i></button>
+                    </p>
+        </div>
+
+        <!-- Second Container -->
+    
+        <div class="container-fluid bg-2 text-center" id="map">
+        </div>
+
+        <!-- Third Container (Grid) -->
+        <div class="container-fluid text-center" id="info">
+            <h3 class="">Légende</h3><br>
+            <div class="row">
+                <div id="legend">
+                    <img
+                        src="./assets/images/legende.jpg"
+                        alt="Legende de la carte"
+                    />
+                </div>
+                <div class="col-sm-12 icones d-flex">
+                <div class="icone">
+                    <img src="./assets/images/tree.png" alt="icone d'Arbre">
+                    <p>Forestville</p>
+                </div>
+                <div class="icone">
+                    <img src="./assets/images/crab.png" alt="Icone crab">
+                    <p>Portneuf-sur-mer</p>
+                </div>
+                <div class="icone">
+                    <img src="./assets/images/moose.png" alt="Icone orignal">
+                    <p>Longue-rive</p>
+                </div>
+                <div class="icone">
+                    <img src="./assets/images/boat.png" alt="Icone bateau">
+                    <p>Les Escoumins</p>
+                </div>
+                <div class="icone">
+                    <img src="./assets/images/whaletail.png" alt="Icone queue de baleine">
+                    <p>Les Bergeronnes</p>
+                </div>
+                <div class="icone">
+                    <img src="./assets/images/beluga.png" alt="Icone beluga">
+                    <p>Tadoussac</p>
+                </div>
+                <div class="icone">
+                    <img src="./assets/images/erable.png" alt="Icone crab">
+                    <p>Sacré-coeur</p>
+                </div>
+                <div class="icone">
+                    <img src="./assets/images/plage.png" alt="Icone plage">
+                    <p>Plages</p>
+                </div>
+                <div class="icone">
+                    <img src="./assets/images/camping.png" alt="Icone camping">
+                    <p>Camping</p>
+                </div>
+                
+                </div>
+            
             </div>
         </div>
-    </nav>
-    <!-- First Container -->
-    <div class="container-fluid text-center banner">
-        <h2 class="titre-secondaire"> Voici quelques informations sur la Côte-Nord, ma belle region!</h2>
-                <p class="txt-right">
-                    <button class="btn" id="localisation"><i class="fa-solid fa-location-arrow"></i></button>
-                </p>
-    </div>
-
-    <!-- Second Container -->
-   
-    <div class="container-fluid bg-2 text-center" id="map">
-    </div>
-
-    <!-- Third Container (Grid) -->
-    <div class="container-fluid text-center" id="info">
-        <h3 class="">Légende</h3><br>
-        <div class="row">
-            <div id="legend">
-                <img
-                    src="./assets/images/legende.jpg"
-                    alt="Legende de la carte"
-                />
-            </div>
-            <div class="col-sm-12 icones d-flex">
-               <div class="icone">
-                   <img src="./assets/images/tree.png" alt="icone d'Arbre">
-                   <p>Forestville</p>
-               </div>
-               <div class="icone">
-                   <img src="./assets/images/crab.png" alt="Icone crab">
-                   <p>Portneuf-sur-mer</p>
-               </div>
-               <div class="icone">
-                <img src="./assets/images/moose.png" alt="Icone orignal">
-                <p>Longue-rive</p>
-               </div>
-               <div class="icone">
-                <img src="./assets/images/boat.png" alt="Icone bateau">
-                <p>Les Escoumins</p>
-               </div>
-               <div class="icone">
-                <img src="./assets/images/whaletail.png" alt="Icone queue de baleine">
-                <p>Les Bergeronnes</p>
-               </div>
-               <div class="icone">
-                <img src="./assets/images/beluga.png" alt="Icone beluga">
-                <p>Tadoussac</p>
-               </div>
-               <div class="icone">
-                <img src="./assets/images/erable.png" alt="Icone crab">
-                <p>Sacré-coeur</p>
-               </div>
-               <div class="icone">
-                <img src="./assets/images/plage.png" alt="Icone plage">
-                <p>Plages</p>
-               </div>
-               <div class="icone">
-                <img src="./assets/images/camping.png" alt="Icone camping">
-                <p>Camping</p>
-               </div>
-               
-            </div>
-         
-        </div>
-    </div>
 
     <!-- Footer -->
-    <footer class="container-fluid  text-center">
-        <p>Monica Gilbert</p>
-        <p>Thème inspiré de <a href="https://www.w3schools.com">www.w3schools.com</a></p>
-    </footer>
-    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
-    <script
-        src="https://unpkg.com/esri-leaflet@3.0.4/dist/esri-leaflet.js"
-        integrity="sha512-oUArlxr7VpoY7f/dd3ZdUL7FGOvS79nXVVQhxlg6ij4Fhdc4QID43LUFRs7abwHNJ0EYWijiN5LP2ZRR2PY4hQ=="
-        crossorigin=""
-    ></script>
-    <script src="https://unpkg.com/esri-leaflet-renderers@2.0.6"></script>
-    <script src="https://cdn.jsdelivr.net/npm/leaflet-search-control@2.1.2/src/Leaflet.search.min.js"></script>
-
-<script src="./assets/scripts/cotenord.js"></script>
-<script src="./assets/scripts/main.js"></script>
-
-</body>
-
+        <footer class="container-fluid  text-center">
+            <p>Monica Gilbert</p>
+            <p>Thème inspiré de <a href="https://www.w3schools.com">www.w3schools.com</a></p>
+        </footer>
+        <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+        <script src="https://unpkg.com/esri-leaflet@3.0.4/dist/esri-leaflet.js" integrity="sha512-oUArlxr7VpoY7f/dd3ZdUL7FGOvS79nXVVQhxlg6ij4Fhdc4QID43LUFRs7abwHNJ0EYWijiN5LP2ZRR2PY4hQ==" crossorigin=""></script>
+        <script src="https://unpkg.com/esri-leaflet-renderers@2.0.6"></script>
+        <script src="https://cdn.jsdelivr.net/npm/leaflet-search-control@2.1.2/src/Leaflet.search.min.js"></script>
+        <script src="./assets/scripts/cotenord.js"></script>
+        <script src="./assets/scripts/main.js"></script>
+    </body>
 </html>

@@ -5,7 +5,7 @@ const apiKey = "AAPK7093c98f9dce403db6986478aa0290e0DN9UUhk_ldJgXa7ogBD48SHn_TAJ
 let centre = [48.543080950483116, -69.20983362777652];
 
 // La carte
-let map = L.map("map").setView(centre, 10);
+let map = L.map("map").setView(centre, 9);
 
 //Fond de carte
 let coucheStamenWatercolor = L.tileLayer(
